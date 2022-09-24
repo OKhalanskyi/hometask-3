@@ -1,7 +1,7 @@
 export interface Note{
-  id:number;
+  id:string;
   name:string;
-  createdAt:number;
+  createdAt:Date;
   category:string;
   content:string;
   isArchive:boolean;

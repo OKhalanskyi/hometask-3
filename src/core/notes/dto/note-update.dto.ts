@@ -1,4 +1,4 @@
 export class NoteUpdateDto{
-  id:number;
+  id:string;
   content:string;
 }
