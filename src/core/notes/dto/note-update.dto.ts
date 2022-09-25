@@ -1,4 +1,7 @@
+import { IsNotEmpty, IsString } from "class-validator";
+
 export class NoteUpdateDto{
-  id:string;
+  @IsNotEmpty()
+  @IsString()
   content:string;
 }

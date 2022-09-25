@@ -3,22 +3,13 @@ import {Note} from "./interfaces/note.interface";
 import {StatisticsInterface} from "./interfaces/statistics.interface";
 import { NoteCreateDto } from "./dto/note-create.dto";
 import { NoteUpdateDto } from "./dto/note-update.dto";
-import { randomUUID } from "crypto";
 
 @Injectable()
 export class NotesService{
   private notes:Note[] = []
-  private stats:StatisticsInterface = {
-    total:this.notes.length,
-    active:this.notes.filter(each=>!each.isArchive).length,
-    archive:this.notes.filter(each=>each.isArchive).length
-  }
 
-  create(note:NoteCreateDto){
+  create(note:NoteCreateDto):Note{
     this.notes.push(note)
-    note.id = randomUUID()
-    note.createdAt = new Date()
-    note.isArchive = false
     return note
   }
 
@@ -27,7 +18,6 @@ export class NotesService{
     if(todo){
       this.notes = this.notes.filter(item=>id!=item.id)
     }
-    else throw new HttpException('impossible to delete, no note with such ID', HttpStatus.NOT_FOUND)
   }
 
   findAll():Note[]{
@@ -41,14 +31,13 @@ export class NotesService{
     }
     else throw new HttpException('no note with such ID', HttpStatus.NOT_FOUND)
   }
-  //fix func params : find by id-dto
-  editNote(note:NoteUpdateDto){
-    let todo = this.findOne(note.id)
+
+  editNote(note:NoteUpdateDto ,id){
+    let todo = this.findOne(id)
     if(todo){
       todo.content = note.content
       return todo
     }
-    return null
   }
 
   toggleArchiveStatus(id:string){
@@ -57,11 +46,12 @@ export class NotesService{
       todo.isArchive = !todo.isArchive
       return todo
     }
-    return null
   }
 
   showStats():StatisticsInterface{
-    return this.stats
+    return {total:this.notes.length,
+            active:this.notes.filter(each=>!each.isArchive).length,
+            archive:this.notes.filter(each=>each.isArchive).length}
   }
 
 }

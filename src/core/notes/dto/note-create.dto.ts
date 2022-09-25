@@ -1,18 +1,25 @@
 import { randomUUID } from "crypto";
-import { IsNotEmpty } from "class-validator";
+import { IsBoolean, IsDate, IsNotEmpty, IsString } from "class-validator";
 
 export class NoteCreateDto{
-  id:string;
 
   @IsNotEmpty()
+  @IsString()
   name:string;
-
-  createdAt:Date;
 
   @IsNotEmpty()
   category:string;
 
+  @IsNotEmpty()
+  @IsString()
   content:string;
 
-  isArchive:boolean;
+  @IsString()
+  id:string = randomUUID();
+
+  @IsBoolean()
+  isArchive:boolean = false;
+
+  @IsDate()
+  createdAt:Date = new Date()
 }
