@@ -1,14 +1,17 @@
 import { randomUUID } from "crypto";
-import { IsBoolean, IsDate, IsNotEmpty, IsString } from "class-validator";
+import { Equals, IsBoolean, IsDate, IsIn, IsInstance, IsNotEmpty, IsString, ValidateNested } from "class-validator";
+import { Type } from "class-transformer";
+import { Category } from "../interfaces/note.interface";
+
 
 export class NoteCreateDto{
-
   @IsNotEmpty()
   @IsString()
   name:string;
 
   @IsNotEmpty()
-  category:string;
+  @IsIn(["Task","Thought","Idea"])
+  category:Category;
 
   @IsNotEmpty()
   @IsString()
