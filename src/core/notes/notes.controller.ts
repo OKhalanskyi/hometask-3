@@ -24,12 +24,12 @@ export class NotesController{
     return this.notesService.findOne(id)
   }
 
-  @Delete('delete/:id')
+  @Delete(':id')
   deleteNote(@Param('id') id:string){
     return this.notesService.delete(id)
   }
 
-  @Patch('edit/:id')
+  @Patch(':id')
   editNote(@Param('id') id:string, @Body() noteUpdateDto:NoteUpdateDto){
     return this.notesService.editNote(noteUpdateDto, id)
   }
@@ -39,7 +39,7 @@ export class NotesController{
     return this.notesService.toggleArchiveStatus(id)
   }
 
-  @Get('/statistics/summary')
+  @Get('/stats/summary')
   showStats():StatisticsInterface{
     return this.notesService.showStats()
   }
