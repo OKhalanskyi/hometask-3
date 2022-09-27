@@ -11,18 +11,16 @@ npm start dev
 #Rest Api
 
 1)show statistics :
-
+</br>
 Request :
 </br>
 GET notes/stats/summary/ 
-
 </br>
-
 Response:
 </br>
 Status: 200
 </br>
-Content-type : Object
+Content-type : Object"StatisticsInterface"
 
 </br>
 
@@ -38,7 +36,7 @@ in case if note is true :
 </br>
 Status:200
 </br>
-Content-type: Object<NoteCreateDto>
+Content-type: Object"NoteCreateDto"
 </br>
 if note not found :  
 </br>
