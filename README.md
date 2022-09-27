@@ -2,7 +2,8 @@
 
 #To start
 
-npm start
+npm start 
+/
 npm start dev
 
 </br>
