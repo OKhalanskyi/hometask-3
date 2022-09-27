@@ -5,9 +5,11 @@
 npm start
 npm start dev
 
+</br>
 
 #Rest Api
-show statistics :
+
+1)show statistics :
 
 Request :
 GET notes/stats/summary/ 
@@ -16,8 +18,9 @@ Response:
 Status: 200
 Content-type : Object
 
+</br>
 
-archive/unarchive status of note :
+2)archive/unarchive status of note :
 
 Request:
 Patch: notes/change-status/:id
